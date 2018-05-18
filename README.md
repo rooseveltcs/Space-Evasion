@@ -1,1 +1,1 @@
-# Final-Project
+This is Ido, Graham, and Veds project
