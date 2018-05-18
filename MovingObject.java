@@ -1,10 +1,10 @@
 import java.awt.*;
 
 public class MovingObject {
-   private Point pos;
+   private FloatingPoint pos;
    private int angle;
    
-   public MovingObject(Point p, int angle) {
+   public MovingObject(FloatingPoint p, int angle) {
       pos = p;
       this.angle = angle;
    }
@@ -12,13 +12,11 @@ public class MovingObject {
    public void move(int move) {
       double x = (Math.cos(Math.toRadians(angle)) * move + pos.getX());
       double y = (Math.sin(Math.toRadians(angle)) * move + pos.getY());
-      pos = new Point(x, y);
+      pos.setPoint(x, y);
    }
    
-   public void rotateObject(Angle a) {   
-   }
    
-   public void setObject(Point p, int deg) {
+   public void setObject(FloatingPoint p, int deg) {
       pos = p;
       angle = deg;
    }
