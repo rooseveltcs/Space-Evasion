@@ -20,6 +20,14 @@ public class MovingObject {
       pos = p;
       angle = deg;
    }
+
+   public FloatingPoint getPos() {
+      return pos;
+   }
+
+   public int getAngle() {
+        return angle;
+   }
    
    public void changeAngle(int deg) {
       angle = deg;
