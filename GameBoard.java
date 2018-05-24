@@ -5,13 +5,11 @@ import java.awt.*;
 import javax.swing.*;
 
 public class GameBoard extends JPanel {
-   public static void main(String[] args) {
-   }
-   
     
    public void paintComponent(Graphics g) {
       System.out.println("GameBoard succesfully called!");
       super.paintComponent(g);
+      setBackground(Color.BLACK);
       stars(g);
    }
 
@@ -20,7 +18,6 @@ public class GameBoard extends JPanel {
       int ycord = (int) (Math.random() * 1001);
       int width = 10;
       int height = 10;
-                
       for (int i = 1; i < 300; i++) {
          for (int j = 1; j <2; j ++) {
             xcord = (int) (Math.random() * 2501);
@@ -28,7 +25,19 @@ public class GameBoard extends JPanel {
             width = 10;
             height = 10;
          }
+
+      
       }
    }
-       
+
+
+
+
+
+
+
+        
+
+
 }
+
