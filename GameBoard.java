@@ -5,12 +5,30 @@ import java.awt.*;
 import javax.swing.*;
 
 public class GameBoard extends JPanel {
+   
+   private static final int NUM_ASTEROIDS = 10;
+   private Rocket rocket;
+   private Asteroid[] asteroids;
+   
+   public GameBoard(Rocket r) {
+      rocket = r;
+      asteroids = new Asteroid[NUM_ASTEROIDS];
+   }
     
    public void paintComponent(Graphics g) {
       System.out.println("GameBoard succesfully called!");
       super.paintComponent(g);
       setBackground(Color.BLACK);
       stars(g);
+   }
+   
+   public void turnRocket(int move) {
+      if (move > 0) {
+         rocket.left();
+      }
+      if (move < 0) {
+         rocket.right();
+      }
    }
 
    private static void stars (Graphics g){
@@ -24,20 +42,7 @@ public class GameBoard extends JPanel {
             ycord = (int) (Math.random() * 1001);
             width = 10;
             height = 10;
-         }
-
-      
+         }          
       }
    }
-
-
-
-
-
-
-
-        
-
-
 }
-

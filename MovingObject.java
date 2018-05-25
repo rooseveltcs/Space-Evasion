@@ -8,6 +8,14 @@ public abstract class MovingObject {
       pos = p;
       this.angle = angle;
    }
+   
+   public void left() {
+      angle++;
+   }
+   
+   public void right() {
+      angle--;
+   }
 
    public void move(int move) {
       double x = (Math.cos(Math.toRadians(angle)) * move + pos.getX());
