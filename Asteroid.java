@@ -1,5 +1,33 @@
 import java.awt.*;
 
+public class Asteroid extends MovingObject {
+   
+   public static final int SIZE = 75;
+   
+   public Asteroid(FloatingPoint p){
+      super(p);
+   }
+   
+   public void draw(Graphics g) {
+      g.setColor(Color.GRAY);
+      int firstx = (int) (Math.random() * w + x);
+      int firsty = (int) (Math.random() * h + y);
+      int pointx1 = firstx;
+      int pointy1 = firsty;
+      for(int i = 1; i <= 4; i++){
+         int pointx2 = (int) (Math.random() * w + x);
+         int pointy2 = (int) (Math.random() * h + y);
+         g.drawLine(pointx1, pointy1, pointx2, pointy2);
+         pointx1 = pointx2;
+         pointy1 = pointy2;
+      }
+      g.drawLine(pointx1, pointy1, firstx, firsty);
+   }
+   
+   public void 
+}
+
+
 class Asteroid {
    public static final int SIZE = 75;
    public static void main(String[] args){
@@ -18,16 +46,11 @@ class Asteroid {
    public static void drawAsteroid(Graphics g, int x, int y, int w, int h){   
 	  // g.drawRect(x, y, w, h);
      g.setColor(Color.GRAY);
-      int firstx = (int) (Math.random() * w + x);
-      int firsty = (int) (Math.random() * h + y);
-      int pointx1 = firstx;
-      int pointy1 = firsty;
-      for(int i = 1; i <= 4; i++){
-         int pointx2 = (int) (Math.random() * w + x);
-         int pointy2 = (int) (Math.random() * h + y);
-         g.drawLine(pointx1, pointy1, pointx2, pointy2);
-         pointx1 = pointx2;
-         pointy1 = pointy2;
+      int [] x = new int [5];
+      int [] y = new int [5];
+      for(int i = 0; i <= 4; i++){
+         x[i] = (int) (Math.random() * w + x);
+         y[i] = (int) (Math.random() * h + y);
       }
       g.drawLine(pointx1, pointy1, firstx, firsty);
 }
