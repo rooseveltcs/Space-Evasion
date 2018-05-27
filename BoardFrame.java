@@ -8,7 +8,8 @@ public class BoardFrame extends JFrame implements KeyListener {
    
    public BoardFrame(GameBoard board) {
       this.board = board;
-      setSize(1000,1500);
+      setSize(2000,1500);
+      setBackground(BACKGROUND);
       setResizable(false);
       setDefaultCloseOperation(EXIT_ON_CLOSE);
       setContentPane(board);
@@ -19,9 +20,11 @@ public class BoardFrame extends JFrame implements KeyListener {
    public void keyPressed(KeyEvent k) {
       int keyCode = k.getKeyCode();
       if (keyCode == KeyEvent.VK_LEFT) {
+         System.out.println("Pressed Left");
          board.turnRocket(1);
       }
       if (keyCode == KeyEvent.VK_RIGHT) {
+         System.out.println("Pressed right");
          board.turnRocket(-1);
       }
    }
