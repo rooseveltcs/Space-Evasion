@@ -8,7 +8,7 @@ public class BoardFrame extends JFrame implements KeyListener {
    
    public BoardFrame(GameBoard board) {
       this.board = board;
-      setSize(2000,1500);
+      setSize(1000,500);
       setBackground(BACKGROUND);
       setResizable(false);
       setDefaultCloseOperation(EXIT_ON_CLOSE);

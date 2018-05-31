@@ -39,6 +39,23 @@ public class Rocket extends MovingObject {
       Polygon triangle = new Polygon(xCoords, yCoords, 3);
       g.drawPolygon(triangle);
    }
+   
+   public Polygon getPolygon() {
+      double x = (getPos().getX());
+      double y = (getPos().getY());
+      FloatingPoint vertex = new FloatingPoint((x + Math.cos(Math.toRadians(angle)) * SCALE_FACTOR),( y - Math.sin((Math.toRadians(angle))) * SCALE_FACTOR));
+      FloatingPoint rightLeg = new FloatingPoint((x + Math.cos(Math.toRadians(angle - 90)) * SCALE_FACTOR / 3),( y - Math.sin((Math.toRadians(angle - 90))) * SCALE_FACTOR / 3));
+      FloatingPoint leftLeg = new FloatingPoint((x + Math.cos(Math.toRadians(angle + 90)) * SCALE_FACTOR / 3),( y - Math.sin((Math.toRadians(angle + 90))) * SCALE_FACTOR / 3));
+      int[] xCoords = new int[3];
+      int[] yCoords = new int[3];
+      xCoords[0] = (int)vertex.getX();
+      xCoords[1] = (int)rightLeg.getX();
+      xCoords[2] = (int)leftLeg.getX();
+      yCoords[0] = (int)vertex.getY();
+      yCoords[1]= (int)rightLeg.getY();
+      yCoords[2] = (int)leftLeg.getY();
+      return new Polygon(xCoords, yCoords, 3);
+   }
 
 
    public void left() {
