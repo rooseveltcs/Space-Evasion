@@ -13,11 +13,10 @@ public class GameBoard extends JPanel {
    private boolean crashed;
    private double score;
    
-   
    public GameBoard(Rocket r) {
       score = 0;
       crashed = false;
-      setSize(1000,750);
+      setSize(2000,1500);
       rocket = r;
       asteroids = new Asteroid[NUM_ASTEROIDS];
       for (int i = 0; i < NUM_ASTEROIDS; i++) {
@@ -46,6 +45,7 @@ public class GameBoard extends JPanel {
       if (!crashed) {
          score += 0.1;
          paintScore(g);
+         //System.out.println("Paint was called!");
          setBackground(Color.BLACK);
          rocket.draw(g);
          for (Asteroid a : asteroids) {
@@ -55,24 +55,34 @@ public class GameBoard extends JPanel {
             if (asteroids[i].getShape().contains(rocket.getVertex().getX(), rocket.getVertex().getY())) {
                crashed = true;
             }
+            if (asteroids[i].getShape().contains(rocket.getRightLeg().getX(), rocket.getRightLeg().getY())) {
+               crashed = true;
+            }
+            if (asteroids[i].getShape().contains(rocket.getLeftLeg().getX(), rocket.getLeftLeg().getY())) {
+               crashed = true;
+            }
          }
-         if (!rocket.getPolygon().intersects(0,0,1000,500)) {
-            crashed = true;
+         for (int i = 0; i < asteroids.length; i++) {
+            asteroids[i].move();
+            if (!asteroids[i].getShape().intersects(0,0,2000,1500)) {
+               asteroids[i].changeMovement();
+            }
          }
       } else {
          setBackground(Color.WHITE);
-         g.drawString("You lost" + score, 500, 500);
+         g.drawString("You lost", 500, 500);
       }
    }
 
    public boolean isCrashed() {
       return crashed;
    }
-   
+
    public void paintScore(Graphics g) {
       g.setColor(Color.WHITE);
-      g.drawString("Score:" + (int)score,(int)SCORE_PLACEMENT.getX(), (int)SCORE_PLACEMENT.getY()); 
+      g.drawString("Score:" + (int)score,(int)SCORE_PLACEMENT.getX(), (int)SCORE_PLACEMENT.getY());
    }
+
 
    private static void stars (Graphics g){
       int xcord = (int) (Math.random() * 2501);
