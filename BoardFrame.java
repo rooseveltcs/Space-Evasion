@@ -4,11 +4,12 @@ import java.awt.event.*;
 
 public class BoardFrame extends JFrame implements KeyListener {
    private static final Color BACKGROUND = Color.BLACK;
+   private static final Dimension DIMENSION = new Dimension(1500, 800);
    private GameBoard board;
    
    public BoardFrame(GameBoard board) {
       this.board = board;
-      setSize(2000,1500);
+      setSize(DIMENSION);
       setBackground(BACKGROUND);
       setResizable(false);
       setDefaultCloseOperation(EXIT_ON_CLOSE);

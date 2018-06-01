@@ -8,6 +8,7 @@ public class GameBoard extends JPanel {
    
    private static final int NUM_ASTEROIDS = 10;
    private static final Point SCORE_PLACEMENT = new Point(1200, 50);
+   private static final Dimension DIMENSION = new Dimension(1500, 800);
    private Rocket rocket;
    private Asteroid[] asteroids;
    private boolean crashed;
@@ -16,11 +17,11 @@ public class GameBoard extends JPanel {
    public GameBoard(Rocket r) {
       score = 0;
       crashed = false;
-      setSize(2000,1500);
+      setSize(DIMENSION);
       rocket = r;
       asteroids = new Asteroid[NUM_ASTEROIDS];
       for (int i = 0; i < NUM_ASTEROIDS; i++) {
-         Point p = new Point((int)(getSize().getWidth() / NUM_ASTEROIDS * i), (int)(getSize().getHeight() / NUM_ASTEROIDS * i));
+         Point p = new Point((int)(DIMENSION.getWidth() / NUM_ASTEROIDS * i), (int)DIMENSION.getHeight() - 100);
          asteroids[i] = new Asteroid(p);
       }
    }
@@ -62,9 +63,13 @@ public class GameBoard extends JPanel {
                crashed = true;
             }
          }
+         if (!pointIsInDimension(rocket.getVertex(), DIMENSION)) {
+            System.out.println("Out of Bounds!");
+            crashed = true;
+         }
          for (int i = 0; i < asteroids.length; i++) {
             asteroids[i].move();
-            if (!asteroids[i].getShape().intersects(0,0,2000,1500)) {
+            if (!asteroids[i].getShape().intersects(0,0,DIMENSION.getWidth(),DIMENSION.getHeight())) {
                asteroids[i].changeMovement();
             }
          }
@@ -97,5 +102,9 @@ public class GameBoard extends JPanel {
             height = 10;
          }          
       }
+   }
+
+   private static boolean pointIsInDimension(Point p, Dimension d) {
+      return p.getX() <= d.getWidth() && p.getX() >= 0 && p.getY() <= d.getHeight() && p.getY() >= 0;
    }
 }

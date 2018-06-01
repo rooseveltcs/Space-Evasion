@@ -3,9 +3,11 @@ import java.awt.*;
 public class Asteroid {
    private static final int NUM_POINTS = 3;
    private static final double SCALE_FACTOR = 250.0;
+   private static final double MOVEMENT_SPEED = 0.5;
    private Polygon asteroid;
    private int xChange;
    private int yChange;
+   private double moveCounter;
 
    public Asteroid(Point p) {
       int[] xCoords = new int[NUM_POINTS];
@@ -19,12 +21,18 @@ public class Asteroid {
       asteroid = new Polygon(xCoords, yCoords, NUM_POINTS);
       xChange = oneOrNegativeOne();
       yChange = oneOrNegativeOne();
+      moveCounter = 0;
    }
 
    public void move() {
-      for (int i = 0; i < asteroid.xpoints.length; i++) {
-         asteroid.xpoints[i] += xChange;
-         asteroid.ypoints[i] += yChange;
+      moveCounter += MOVEMENT_SPEED;
+      if (moveCounter >= 1.0) {
+         for (int i = 0; i < asteroid.xpoints.length; i++) {
+            asteroid.xpoints[i] += xChange;
+            asteroid.ypoints[i] += yChange;
+         }
+         asteroid = new Polygon(asteroid.xpoints, asteroid.ypoints, NUM_POINTS);
+         moveCounter = 0;
       }
    }
    
@@ -34,8 +42,8 @@ public class Asteroid {
    }
 
    public void changeMovement() {
-      xChange *= -1;
-      yChange *= -1;
+      xChange = oneOrNegativeOne();
+      yChange = oneOrNegativeOne();
    }
 
    public Polygon getShape() {
