@@ -9,8 +9,10 @@ public class EndBoard extends JPanel {
     private JButton endButton;
     private JTextField textField;
     private ScoreBoard scoreBoard;
+    private double score;
 
-    public EndBoard(ScoreBoard board) {
+    public EndBoard(ScoreBoard board, double score) {
+        this.score = score;
         scoreBoard = board;
         setSize(BoardFrame.DIMENSION);
         restarted = false;
@@ -27,7 +29,8 @@ public class EndBoard extends JPanel {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        scoreBoard.drawScores(g, 500, 500);
+        scoreBoard.drawScores(g, 500, 250);
+        g.drawString("Your Score: " + ((int)(score * 10) / 10.0), 300, 25);
     }
 
     public boolean isRestarted() {

@@ -21,8 +21,9 @@ public class EvasionMain {
       while (restarted) {
           Thread.sleep(1000);
           board.playGame();
-          System.out.print(board.getScore());
-          EndBoard endBoard = new EndBoard(scoreBoard);
+          double score = board.getScore();
+          System.out.println(score);
+          EndBoard endBoard = new EndBoard(scoreBoard, score);
           frame.changeBoard(endBoard);
           frame.addButton(endBoard.getRestartButton());
           frame.addButton(endBoard.getEndButton());
