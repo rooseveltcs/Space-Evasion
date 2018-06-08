@@ -1,13 +1,16 @@
 import java.awt.*;
 
-public class Rocket extends MovingObject {
-   private int angle;
-
+public class Rocket {
+   public static final double STARTING_XCOORD = 750.0;
+   public static final double STARTING_YCOORD = 0.0;
+   public static final int ANGLE = 270;
    public static final int SCALE_FACTOR = 30;
+   private int angle;
+   private FloatingPoint pos;
 
-   public Rocket(FloatingPoint p, int angle) {
-      super(p);
-      this.angle = angle;
+   public Rocket() {
+      pos = new FloatingPoint(STARTING_XCOORD, STARTING_YCOORD);
+      this.angle = ANGLE;
    }
 
    public void move(int move) {
@@ -15,6 +18,7 @@ public class Rocket extends MovingObject {
       double y = (-Math.sin(Math.toRadians(angle)) * move + getPos().getY());
       setPoint(x, y);
    }
+
 
    public void draw(Graphics g) {
       g.setColor(Color.WHITE);
@@ -59,16 +63,42 @@ public class Rocket extends MovingObject {
 
 
    public void left() {
-      angle += 3;
+      angle += 4;
    }
 
+
    public void right() {
-      angle -= 3;
+      angle -= 4;
    }
 
    public Point getVertex() {
       double x = (getPos().getX());
       double y = (getPos().getY());
       return new Point((int)(x + Math.cos(Math.toRadians(angle)) * SCALE_FACTOR),(int)( y - Math.sin((Math.toRadians(angle))) * SCALE_FACTOR));
+   }
+
+   public Point getRightLeg() {
+      double x = (getPos().getX());
+      double y = (getPos().getY());
+      return new Point ((int)(x + Math.cos(Math.toRadians(angle - 90)) * SCALE_FACTOR / 3),(int)( y - Math.sin((Math.toRadians(angle - 90))) * SCALE_FACTOR / 3));
+   }
+
+   public Point getLeftLeg() {
+      double x = (getPos().getX());
+      double y = (getPos().getY());
+      return new Point((int)(x + Math.cos(Math.toRadians(angle - 90)) * SCALE_FACTOR / 3),(int)( y - Math.sin((Math.toRadians(angle - 90))) * SCALE_FACTOR / 3));
+   }
+
+
+   public void setPoint(double x, double y) {
+      pos.setPoint(x, y);
+   }
+
+   public FloatingPoint getPos() {
+      return pos;
+   }
+
+   public String toString() {
+      return "Position: (" + pos.getX() + ", " + pos.getY() + ")";
    }
 }

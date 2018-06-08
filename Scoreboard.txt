@@ -1,0 +1,36 @@
+Graham
+480.3000000000407
+<write name here>
+365.9000000000147
+Guy
+100.4
+Lashandra Mitchell
+96.69999999999878
+a
+82.2999999999996
+Juuuu
+80.0
+Jimmy Neutron
+73.70000000000009
+<write name here>
+67.90000000000042
+Jim
+59.10000000000057
+Name
+57.90000000000055
+Name
+49.90000000000044
+Name
+49.10000000000043
+Harambe
+40.0
+Logan
+30.5
+Farmer John
+30.0
+Moob
+20.0
+Pooopp
+10.5
+Ethan
+0.5

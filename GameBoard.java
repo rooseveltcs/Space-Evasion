@@ -8,29 +8,40 @@ public class GameBoard extends JPanel {
    
    private static final int NUM_ASTEROIDS = 10;
    private static final Point SCORE_PLACEMENT = new Point(1200, 50);
-   private static final Dimension DIMENSION = new Dimension(1500, 800);
    private Rocket rocket;
    private Asteroid[] asteroids;
    private boolean crashed;
    private double score;
    
-   public GameBoard(Rocket r) {
+   public GameBoard() {
       score = 0;
       crashed = false;
-      setSize(DIMENSION);
-      rocket = r;
+      setSize(BoardFrame.DIMENSION);
+      rocket = new Rocket();
       asteroids = new Asteroid[NUM_ASTEROIDS];
       for (int i = 0; i < NUM_ASTEROIDS; i++) {
-         Point p = new Point((int)(DIMENSION.getWidth() / NUM_ASTEROIDS * i), (int)DIMENSION.getHeight() - 100);
+         Point p = new Point((int)(BoardFrame.DIMENSION.getWidth() / NUM_ASTEROIDS * i), (int)BoardFrame.DIMENSION.getHeight() - 100);
          asteroids[i] = new Asteroid(p);
       }
    }
-    
-   public void paintComponent(Graphics g) {
-      //System.out.println("GameBoard succesfully called!");
-      super.paintComponent(g);
-      //stars(g);
+
+   public void playGame() throws InterruptedException {
+      while (!isCrashed()) {
+         repaint();
+         Thread.sleep(10);
+         rocket.move(2);
+      }
    }
+
+   public void printRocket() {
+      System.out.println(rocket);
+   }
+
+   public void resetRocket() {
+      System.out.println("Rocket Reset!");
+      rocket = new Rocket();
+   }
+
    
    public void turnRocket(int move) {
       if (move > 0) {
@@ -63,19 +74,16 @@ public class GameBoard extends JPanel {
                crashed = true;
             }
          }
-         if (!pointIsInDimension(rocket.getVertex(), DIMENSION)) {
+         if (!pointIsInDimension(rocket.getVertex(), BoardFrame.DIMENSION)) {
             System.out.println("Out of Bounds!");
             crashed = true;
          }
          for (int i = 0; i < asteroids.length; i++) {
             asteroids[i].move();
-            if (!asteroids[i].getShape().intersects(0,0,DIMENSION.getWidth(),DIMENSION.getHeight())) {
+            if (!asteroids[i].getShape().intersects(0,0,BoardFrame.DIMENSION.getWidth(),BoardFrame.DIMENSION.getHeight())) {
                asteroids[i].changeMovement();
             }
          }
-      } else {
-         setBackground(Color.WHITE);
-         g.drawString("You lost", 500, 500);
       }
    }
 
@@ -86,6 +94,10 @@ public class GameBoard extends JPanel {
    public void paintScore(Graphics g) {
       g.setColor(Color.WHITE);
       g.drawString("Score:" + (int)score,(int)SCORE_PLACEMENT.getX(), (int)SCORE_PLACEMENT.getY());
+   }
+
+   public double getScore() {
+      return score;
    }
 
 
