@@ -16,7 +16,7 @@ public class EndBoard extends JPanel {
         scoreBoard = board;
         setSize(BoardFrame.DIMENSION);
         restarted = false;
-        restartButton = new JButton("Press to Restart!");
+        restartButton = new JButton("Press Button to Restart!");
         endButton = new JButton("Press to End!");
         textField = new JTextField("Name", 20);
         add(restartButton);

@@ -25,6 +25,7 @@ public class EvasionMain {
           System.out.println(score);
           EndBoard endBoard = new EndBoard(scoreBoard, score);
           frame.changeBoard(endBoard);
+          Thread.sleep(3000);
           frame.addButton(endBoard.getRestartButton());
           frame.addButton(endBoard.getEndButton());
           frame.addTextField(endBoard.getTextField());

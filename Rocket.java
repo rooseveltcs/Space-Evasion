@@ -63,12 +63,12 @@ public class Rocket {
 
 
    public void left() {
-      angle += 4;
+      angle += 5;
    }
 
 
    public void right() {
-      angle -= 4;
+      angle -= 5;
    }
 
    public Point getVertex() {
