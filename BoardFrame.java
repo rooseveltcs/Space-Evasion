@@ -1,5 +1,3 @@
-import com.sun.tools.javadoc.Start;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
